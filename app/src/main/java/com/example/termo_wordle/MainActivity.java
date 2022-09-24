@@ -2,6 +2,7 @@ package com.example.termo_wordle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -19,22 +20,32 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewPalavras;
     private Button botaoEnviar;
     private TextInputEditText tentativa;
+
     private ArrayList<String> palavrasDisponiveis = new ArrayList<>();
+    private ArrayList<String> palavrasTentadas = new ArrayList<>();
+
+    private boolean fimdejogo = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //Instâncias
         recyclerViewPalavras = findViewById(R.id.recyclerView);
         botaoEnviar = findViewById(R.id.enviar);
         tentativa = findViewById(R.id.tentativa);
 
-        //INTERFACE RECYCLER VIEW -
+        //RECYCLER VIEW -
+        //adapter
+        adapter adapter = new adapter(palavrasTentadas);
+
         //Layout
-        // RecyclerView.LayoutManager = new GridLayoutManager(getApplicationContext());
-        // recyclerViewPalavras.setLayoutManager(GridLayoutManager);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerViewPalavras.setLayoutManager(layoutManager);
+        recyclerViewPalavras.setHasFixedSize(true);
+        recyclerViewPalavras.setAdapter(adapter);
 
         //Listener do botão Enviar
         botaoEnviar.setOnClickListener(new View.OnClickListener() {
@@ -45,9 +56,22 @@ public class MainActivity extends AppCompatActivity {
                 String tentativaAtual = tentativa.toString();
                 //Gera uma palavra
                 String palavraSorteada = gerarPalavras();
-                
+
+                listarPalavras(palavraSorteada);
+
                 //valida a tentativa
-                boolean resultado = validarTentativa(tentativaAtual, palavraSorteada);
+                 fimdejogo = validarTentativa(tentativaAtual, palavraSorteada);
+
+                //joga a palavra na tela
+                listarPalavras(tentativaAtual);
+
+                //finaliza o jogo - pendente
+                if(fimdejogo == true){
+                    //chama a activity de final de jogo vitoria - pendente
+                }
+                if( palavrasTentadas.size() >= 6){
+                    //chama a activity de final de jogo derrota - pendente
+                }
             }
         });
     }
@@ -66,8 +90,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean validarTentativa(String tentativa, String palavraSorteada){
         boolean resultado = false;
         if(tentativa == palavraSorteada){
-            //fim de jogo
+            resultado = true;
         }
         return resultado;
+    }
+
+    public void listarPalavras(String tentativaparaListar){
+        palavrasTentadas.add(tentativaparaListar);
     }
 }
