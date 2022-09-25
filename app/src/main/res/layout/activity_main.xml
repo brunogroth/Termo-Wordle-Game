@@ -13,8 +13,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layoutManager="GridLayoutManager"
-        tools:spanCount="5" />
+        tools:layoutManager="LinearLayoutManager"
+        tools:spanCount="1" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
