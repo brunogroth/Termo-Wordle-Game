@@ -47,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewPalavras.setHasFixedSize(true);
         recyclerViewPalavras.setAdapter(adapter);
 
+        //Gera uma palavra
+        String palavraSorteada = gerarPalavras();
+
+        String primeiraLetra = palavraSorteada.substring(0, 1);
+
+        String ultimaLetra = palavraSorteada.substring(4, 5);
+
+
+
         //Listener do botão Enviar
         botaoEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
                 //Aqui ocorrerá a validação da palavra enviada
 
                 String tentativaAtual = tentativa.toString();
-                //Gera uma palavra
-                String palavraSorteada = gerarPalavras();
 
                 listarPalavras(palavraSorteada);
 
