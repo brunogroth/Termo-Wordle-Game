@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
         adapter adapter = new adapter(palavrasTentadas);
 
         //Layout
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+     /*   RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewPalavras.setLayoutManager(layoutManager);
         recyclerViewPalavras.setHasFixedSize(true);
-        recyclerViewPalavras.setAdapter(adapter);
+        recyclerViewPalavras.setAdapter(adapter);*/
 
         //Gera uma palavra
         String palavraSorteada = gerarPalavras();
@@ -71,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
 
                 //joga a palavra na tela
                 listarPalavras(tentativaAtual);
+
+                adapter adapter = new adapter(palavrasTentadas);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerViewPalavras.setLayoutManager(layoutManager);
+                recyclerViewPalavras.setHasFixedSize(true);
+                recyclerViewPalavras.setAdapter(adapter);
 
                 //finaliza o jogo - pendente
                 if(fimdejogo == true){
