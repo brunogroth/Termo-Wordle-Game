@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean validarTentativa(String tentativa, String palavraSorteada){
         boolean resultado = false;
-        if(tentativa == palavraSorteada){
+        if(tentativa.equals(palavraSorteada)){
             resultado = true;
         }
         return resultado;
