@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewPalavras;
     private Button botaoEnviar;
     private TextInputEditText tentativa;
+
+    private TextView primeiraletra;
+    private TextView ultimaletra;
 
     private ArrayList<String> palavrasDisponiveis = new ArrayList<>();
     private ArrayList<String> palavrasTentadas = new ArrayList<>();
@@ -36,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewPalavras = findViewById(R.id.recyclerView);
         botaoEnviar = findViewById(R.id.enviar);
         tentativa = findViewById(R.id.tentativa);
+
+        primeiraletra = findViewById(R.id.primeiraletra);
+        ultimaletra = findViewById(R.id.ultimaletra);
 
         //RECYCLER VIEW -
         //adapter
@@ -54,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
 
         String ultimaLetra = palavraSorteada.substring(4, 5);
 
-
+        // TextView recebe e imprime o valor da variável
+        primeiraletra.setText(primeiraLetra);
+        ultimaletra.setText(ultimaLetra);
 
         //Listener do botão Enviar
         botaoEnviar.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
                 String tentativaAtual = tentativa.getText().toString();
 
-                listarPalavras(palavraSorteada);
 
                 //valida a tentativa
                  fimdejogo = validarTentativa(tentativaAtual, palavraSorteada);
@@ -77,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 recyclerViewPalavras.setLayoutManager(layoutManager);
                 recyclerViewPalavras.setHasFixedSize(true);
                 recyclerViewPalavras.setAdapter(adapter);
+                tentativa.setText("");
 
                 //finaliza o jogo - pendente
                 if(fimdejogo == true){

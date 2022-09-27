@@ -19,7 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FF4242"
+            android:background="#00FFFFFF"
+            android:textAlignment="center"
+            android:textColor="#FB0000"
             android:textSize="110sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
