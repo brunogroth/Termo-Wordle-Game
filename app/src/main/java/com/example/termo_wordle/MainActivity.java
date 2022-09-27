@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Aqui ocorrerá a validação da palavra enviada
 
-                String tentativaAtual = tentativa.toString();
+                String tentativaAtual = tentativa.getText().toString();
 
                 listarPalavras(palavraSorteada);
 
