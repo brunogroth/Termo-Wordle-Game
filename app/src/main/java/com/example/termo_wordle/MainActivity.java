@@ -1,10 +1,10 @@
 package com.example.termo_wordle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
 
     //Declaração
     private RecyclerView recyclerViewPalavras;
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         //Instâncias
         recyclerViewPalavras = findViewById(R.id.recyclerView);
@@ -66,11 +66,15 @@ public class MainActivity extends AppCompatActivity {
                 listarPalavras(tentativaAtual);
 
                 //finaliza o jogo - pendente
-                if(fimdejogo == true){
-                    //chama a activity de final de jogo vitoria - pendente
+                //chama a tela de fim de jogo
+                if(fimdejogo == true)
+                {
+                    Intent intent = new Intent(getApplicationContext(),FimSucess.class);
+                    startActivity(intent);
                 }
                 if( palavrasTentadas.size() >= 6){
-                    //chama a activity de final de jogo derrota - pendente
+                    Intent intentTry = new Intent(getApplicationContext(),FimLose.class);
+                    startActivity(intentTry);
                 }
             }
         });
