@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
             resultado = true;
         }
         return resultado;
+
     }
 
     public void listarPalavras(String tentativaparaListar){
