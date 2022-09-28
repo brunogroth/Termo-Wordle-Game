@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewPalavras;
     private Button botaoEnviar;
     private TextInputEditText tentativa;
+
+    private TextView primeiraletra;
+    private TextView ultimaletra;
 
     private ArrayList<String> palavrasDisponiveis = new ArrayList<>();
     private ArrayList<String> palavrasTentadas = new ArrayList<>();
@@ -37,15 +41,29 @@ public class MainActivity extends AppCompatActivity {
         botaoEnviar = findViewById(R.id.enviar);
         tentativa = findViewById(R.id.tentativa);
 
+        primeiraletra = findViewById(R.id.primeiraletra);
+        ultimaletra = findViewById(R.id.ultimaletra);
+
         //RECYCLER VIEW -
         //adapter
         adapter adapter = new adapter(palavrasTentadas);
 
         //Layout
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+     /*   RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewPalavras.setLayoutManager(layoutManager);
         recyclerViewPalavras.setHasFixedSize(true);
-        recyclerViewPalavras.setAdapter(adapter);
+        recyclerViewPalavras.setAdapter(adapter);*/
+
+        //Gera uma palavra
+        String palavraSorteada = gerarPalavras();
+
+        String primeiraLetra = palavraSorteada.substring(0, 1);
+
+        String ultimaLetra = palavraSorteada.substring(4, 5);
+
+        // TextView recebe e imprime o valor da variável
+        primeiraletra.setText(primeiraLetra);
+        ultimaletra.setText(ultimaLetra);
 
         //Listener do botão Enviar
         botaoEnviar.setOnClickListener(new View.OnClickListener() {
@@ -53,17 +71,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Aqui ocorrerá a validação da palavra enviada
 
-                String tentativaAtual = tentativa.toString();
-                //Gera uma palavra
-                String palavraSorteada = gerarPalavras();
+                String tentativaAtual = tentativa.getText().toString();
 
-                listarPalavras(palavraSorteada);
 
                 //valida a tentativa
                  fimdejogo = validarTentativa(tentativaAtual, palavraSorteada);
 
                 //joga a palavra na tela
                 listarPalavras(tentativaAtual);
+
+                adapter adapter = new adapter(palavrasTentadas);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerViewPalavras.setLayoutManager(layoutManager);
+                recyclerViewPalavras.setHasFixedSize(true);
+                recyclerViewPalavras.setAdapter(adapter);
+                tentativa.setText("");
 
                 //finaliza o jogo - pendente
                 //chama a tela de fim de jogo
@@ -93,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean validarTentativa(String tentativa, String palavraSorteada){
         boolean resultado = false;
-        if(tentativa == palavraSorteada){
+        if(tentativa.equals(palavraSorteada)){
             resultado = true;
         }
         return resultado;
