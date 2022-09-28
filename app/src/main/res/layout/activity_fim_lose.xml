@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="125dp"
         android:layout_marginEnd="125dp"
-        android:text="Acabaram suas tentavias"
+        android:text="Acabaram suas tentativas"
         android:textColor="#673AB7"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonTry"
