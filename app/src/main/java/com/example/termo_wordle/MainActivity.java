@@ -87,16 +87,17 @@ public class MainActivity extends AppCompatActivity {
                 recyclerViewPalavras.setAdapter(adapter);
                 tentativa.setText("");
 
-                //finaliza o jogo - pendente
                 //chama a tela de fim de jogo
                 if(fimdejogo == true)
                 {
-                    Intent intent = new Intent(getApplicationContext(),FimSucess.class);
+                    Intent intent = new Intent(MainActivity.this,FimSucess.class);
                     startActivity(intent);
+                    finish();
                 }
                 if( palavrasTentadas.size() >= 6){
-                    Intent intentTry = new Intent(getApplicationContext(),FimLose.class);
+                    Intent intentTry = new Intent(MainActivity.this,FimLose.class);
                     startActivity(intentTry);
+                    finish();
                 }
             }
         });

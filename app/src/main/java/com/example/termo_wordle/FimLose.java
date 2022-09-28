@@ -17,8 +17,6 @@ public class FimLose extends AppCompatActivity {
     private  TextView msgLose;
     private TextView msgLose2;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +31,7 @@ public class FimLose extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intentTry = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intentTry);
 
             }
         });
