@@ -44,16 +44,6 @@ public class MainActivity extends AppCompatActivity {
         primeiraletra = findViewById(R.id.primeiraletra);
         ultimaletra = findViewById(R.id.ultimaletra);
 
-        //RECYCLER VIEW -
-        //adapter
-        adapter adapter = new adapter(palavrasTentadas);
-
-        //Layout
-     /*   RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerViewPalavras.setLayoutManager(layoutManager);
-        recyclerViewPalavras.setHasFixedSize(true);
-        recyclerViewPalavras.setAdapter(adapter);*/
-
         //Gera uma palavra
         String palavraSorteada = gerarPalavras();
 
